@@ -1,7 +1,7 @@
 # SocioDAO
 
 ## Introduction
-SocioDAO is an online platform for creating DAOs, voting, and fundraising.
+SocioDAO is a dAPP for creating DAOs, voting, and fundraising.
 
  
 
