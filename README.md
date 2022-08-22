@@ -1,7 +1,7 @@
 # SocioDAO
 
 ## Introduction
-SocioDao is Decentralized Autonomous Organization for voting and crowdfunding.
+SocioDAO is an online platform for creating DAOs, voting, and fundraising.
 
  
 
