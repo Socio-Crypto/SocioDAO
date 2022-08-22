@@ -4,7 +4,9 @@
 
 
 {% block links %}
-<li>
+<li {% if 'call' == current_path %}
+class="active open"
+{% endif %}>
     <a href="{% url 'call' dao_id %}">DAO Home</a>
 </li>
 {% endblock %}

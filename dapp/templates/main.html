@@ -1,7 +1,7 @@
 ﻿{% load static %}
 {% load i18n %}
 
-
+{% with current_path=request.resolver_match.url_name %}
 <!doctype html>
 <html class="no-js " lang="en">
 <head>
@@ -51,7 +51,10 @@
                 <div class="menu">
                     <ul class="list">
                         <li class="header">MAIN</li>
-                        <li> <a href="{% url 'initialize' %}"><i class="icon-speedometer"></i><span>Create Dao</span></a></li>   
+                        <li {% if 'initialize' == current_path %}
+                                class="active open"
+                            {% endif %}
+                           > <a href="{% url 'initialize' %}"><i class="icon-speedometer"></i><span>Overview</span></a></li>   
                         {% block links %}
 
                         {% endblock %} 
@@ -66,25 +69,9 @@
 
 <section class="content">
     <div class="container">
-        <div class="row clearfix">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="body block-header">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-8 col-sm-12">
-                                <h2>SocioDao</h2>
-                                <!-- <ul class="breadcrumb p-l-0 p-b-0 ">
-                                    <li class="breadcrumb-item"><a href="index.html"><i class="icon-home"></i></a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">UI</a></li>
-                                    <li class="breadcrumb-item active">Notification</li>
-                                </ul> -->
-                            </div>            
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="row clearfix" ></div>
+        <div class="col-lg-12"></div>
+        <div class="card"></div>
 
         {% block content %}
 
@@ -94,9 +81,18 @@
             <div class="col-md-12 col-lg-12">
               <div class="card">
                 <div class="body">
-                  <div class="row clearfix">
-                    <p class="copyright m-b-0 text-white col-lg-12" style="color: black!important;
-                    font-size: larger;     margin-block: auto;">2022 Developed by SocioCrypto <img src="/static/images/socio-logo.jpg"  height="50" alt="SocioCrypto"></p>
+                  <div class="row">
+                    <div class="col">
+
+                        <p class="copyright m-b-0 text-white" style="color: black!important;
+                        font-size: larger;     margin-block: auto;">
+                        <!-- 2022 Developed by  -->
+                        <img src="/static/images/socio-logo.jpg"  height="40" alt="SocioCrypto">
+                        <strong>Socio</strong>Crypto </p>
+                    </div>
+                    <div class="col align-self-end" >
+                        <p style="margin-left: 451px;">Twitter    Discord    Documentation</p>
+                    </div>
     
                 </div>
                 </div>
@@ -118,3 +114,4 @@
 <script src="assets/js/pages/ui/notifications.js"></script> <!-- Custom Js -->
 </body>
 </html>
+{% endwith %}

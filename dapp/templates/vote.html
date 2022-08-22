@@ -1,8 +1,11 @@
 {% extends "main.html" %}
 {% load i18n %}
 
+
 {% block links %}
-<li>
+<li {% if 'call' == current_path %}
+class="active open"
+{% endif %}>
     <a href="{% url 'call' id %}">DAO Home</a>
 </li>
 {% endblock %}
