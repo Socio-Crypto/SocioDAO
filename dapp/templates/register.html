@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+
+{% block content %}
+
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-12 col-sm-6">
+        <div class="card" style="height: 300px;">
+            
+            <div class="body">
+
+                
+                    
+                    
+                        <!-- <h3>Registration period is valid between round {{RegBegin}} and {{RegEnd}}</h3> -->
+                        <form  method="post">
+                            {%csrf_token%}
+                            <p>To join the DAO you need to have more than 10 SocioAlgo token. To aquire tokens you can exchange it over here. For each 10 SocioAlgo, you will acuire 1 voting power. </p>
+                            <p>By joining SocioDao, you will be qualified to make proposals or participate in voting and crowdfunding.</p>
+                            <p>You need to agree with our terms and confirm before joining the DAO members</p>
+                            <label for="">Enter your pasphrase to join the DAO:   </label>
+                            <input type="password" name="pasphrase" >
+                            <a href=""><input src=""  type="submit" class="btn btn-primary btn-round btn-block waves-effect btn-raised m-b-10" name="action" value="join" id="" style="height: 50px; width: 100px; font-size: 15px ;"></a> 
+                            <!-- <input type="submit" value="OK"> -->
+                        </form>
+
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-6">
+        <div class="card" style="height: 300px;">                    
+            
+            <div class="header">
+                <h2><strong>Last accounts</strong> Joined</h2>                        
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-filter table-hover m-b-0">                                
+                        <tbody>
+
+                            <tr data-status="approved">
+                                <td>Account Address</td>
+                                <td>Time Joined</div></td>
+                            </tr>
+                            {% for i,j in users.items %}
+                                <tr>
+                                        <td>{{i}}</td>
+                                        <td>{{j}}</td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

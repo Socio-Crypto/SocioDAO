@@ -1,0 +1,179 @@
+#pragma version 5
+txn ApplicationID
+int 0
+==
+bnz main_l24
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l23
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l22
+txn OnCompletion
+int CloseOut
+==
+bnz main_l19
+txn OnCompletion
+int OptIn
+==
+bnz main_l18
+txna ApplicationArgs 0
+byte "vote"
+==
+bnz main_l11
+txna ApplicationArgs 0
+byte "propose"
+==
+bnz main_l8
+err
+main_l8:
+int 1
+txna ApplicationArgs 9
+app_global_get_ex
+store 3
+store 2
+load 2
+int 0
+==
+bnz main_l10
+byte "theotherapp"
+load 2
+app_global_put
+txna ApplicationArgs 1
+int 0
+app_global_put
+txna ApplicationArgs 3
+txna ApplicationArgs 2
+btoi
+app_global_put
+txna ApplicationArgs 4
+int 0
+app_global_put
+txna ApplicationArgs 6
+txna ApplicationArgs 5
+app_global_put
+txna ApplicationArgs 7
+byte "accept"
+app_global_put
+txna ApplicationArgs 8
+txn Sender
+app_global_put
+int 1
+return
+main_l10:
+int 0
+return
+main_l11:
+int 0
+global CurrentApplicationID
+byte "voted"
+app_local_get_ex
+store 1
+store 0
+load 1
+bnz main_l17
+txna ApplicationArgs 4
+app_global_get
+byte "reject"
+==
+bnz main_l16
+txna ApplicationArgs 1
+txna ApplicationArgs 1
+app_global_get
+int 1
++
+app_global_put
+txna ApplicationArgs 3
+txna ApplicationArgs 3
+app_global_get
+txna ApplicationArgs 2
+btoi
++
+app_global_put
+int 0
+byte "voted"
+txna ApplicationArgs 1
+app_local_put
+int 0
+byte "fund_amount"
+txna ApplicationArgs 2
+app_local_put
+txna ApplicationArgs 3
+app_global_get
+txna ApplicationArgs 5
+app_global_get
+>
+bnz main_l15
+main_l14:
+int 1
+return
+main_l15:
+txna ApplicationArgs 4
+byte "reject"
+app_global_put
+b main_l14
+main_l16:
+int 0
+return
+main_l17:
+int 0
+return
+main_l18:
+int 1
+return
+main_l19:
+int 0
+global CurrentApplicationID
+byte "voted"
+app_local_get_ex
+store 1
+store 0
+global Round
+byte "VoteEnd"
+app_global_get
+<=
+load 1
+&&
+bnz main_l21
+main_l20:
+int 1
+return
+main_l21:
+load 0
+load 0
+app_global_get
+int 1
+-
+app_global_put
+b main_l20
+main_l22:
+txn Sender
+byte "Creator"
+app_global_get
+==
+return
+main_l23:
+txn Sender
+byte "Creator"
+app_global_get
+==
+return
+main_l24:
+byte "Creator"
+txn Sender
+app_global_put
+byte "members_contract_id"
+txna ApplicationArgs 4
+btoi
+app_global_put
+byte "voting_contract_id"
+txna ApplicationArgs 5
+btoi
+app_global_put
+byte "app_address"
+global CurrentApplicationAddress
+app_global_put
+int 1
+return

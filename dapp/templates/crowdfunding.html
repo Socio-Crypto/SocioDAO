@@ -1,0 +1,196 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% block links %}
+<li>
+    <a href="{% url 'call' id %}">DAO Home</a>
+</li>
+{% endblock %}
+
+
+{% block content %}
+{% include 'messages.html' %}
+
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-12 col-sm-6">
+        <div class="card" style="height: 450px;">
+            <div class="body">
+                <p>You need to join the DAO first, to be able to either vote or make proposals. </p>
+                <form  method="post">
+                    {%csrf_token%}
+
+                    <br>
+                    <div class="row clearfix">
+                        <div class="col-lg-6 col-md-12 col-sm-2">
+                            <label for="">Proposal Name </label>
+                            <br><br>
+                            <label for="">Proposal detail</label>
+                            
+                            <br><br><br><br><br>
+                            <label for="">Fund request: </label>
+                            <br><br>
+                            <label for="">Enter your pasphrase to join the DAO:   </label>
+
+
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-4">
+                            <input type="text" name="proposal_name" >
+                            <br>
+                            <br>
+                            <textarea name="proposal_detail" id="" cols="21" rows="4"></textarea>
+                            <br><br>
+                            <input type="text" id="fname" name="fund_amount">
+                            <br> <br>
+                            <input type="password" name="pasphrase" >
+
+                        </div>
+                    </div>
+
+                    <br>
+                    
+                    <br>
+                    <input id="action" type="submit" class="btn btn-primary btn-round btn-block waves-effect btn-raised m-b-10" name="action" value='propose' style="width:200; height:40">
+                    <br>
+                    <br>
+                    
+                    <!-- <input type="submit" value="OK"> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-6">
+        <div class="card" style="height: 450px;">                    
+            
+            <div class="header">
+                <h2><strong>Last Proposals</strong> Added</h2>                        
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-filter table-hover m-b-0">                                
+                        <tbody>
+
+                            <tr data-status="approved">
+                                <td>Proposal Name</td>
+                                <td>Proposal detail</div></td>
+                                <!-- <td>Number of votes</td> -->
+                                <td>fund request</td>
+                                <!-- <td>fund amount</td> -->
+
+                                <!-- <td width="250px">
+                                    <div class="progress">
+                                        <div class="progress-bar l-green" role="progressbar" aria-valuenow="87" aria-valuemin="0" aria-valuemax="100" style="width: 87%;"></div>
+                                    </div>
+                                </td> -->
+                                <!-- <td><span >fund_state</span></td> -->
+                            </tr>
+                                
+                            {% for i, j in prps.items %}
+
+                            <tr data-status="approved">
+                                <td>{{i}}</td>
+                                <td>{{j.fund_detail}}</div></td>
+                                <td>{{j.fund_request}}</td>
+                                
+                            </tr>
+                            
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-6 col-md-12 col-sm-6">
+        <div class="card" style="height: 400px;">
+            <div class="body">
+                <p>You need to join the DAO first, to be able to either vote or make proposals. </p>
+                <form  method="post">
+                    {%csrf_token%}
+
+                    <br>
+                    <div class="row clearfix">
+                    <div class="col-lg-6 col-md-4 col-sm-3">
+                        <label for="">Choice a proposal to voite for </label>
+                        <br><br>
+                        <label for="">Fund amount:</label>
+                        <br><br>
+                        <label for="">Enter your pasphrase to vote:   </label>
+
+
+                    </div>
+                    <div class="col-lg-6 col-md-4 col-sm-3">
+                        <select id="cars" name="choice">
+                            {% for i in prps %}
+                                <option value='{{i}}'>{{i}}</option>
+                            {% endfor %}
+                        </select>
+                        <br>
+                        <br>
+                        <input type="text" id="fname" name="fund_amount">
+                        <br><br>
+                        <input type="password" name="pasphrase" >
+
+                    </div>
+                </div>
+
+
+                    <br>
+                    
+                    <br>
+                    <input id="action" type="submit" class="btn btn-primary btn-round btn-block waves-effect btn-raised m-b-10" name="action" value='vote' style="width:200; height:40">
+                    <br>
+                    <br>
+                    
+                    <!-- <input type="submit" value="OK"> -->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 col-md-12 col-sm-6">
+        <div class="card" style="height: 400px;">                    
+            
+            <div class="header">
+                <h2><strong>Last votes</strong></h2>                        
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-filter table-hover m-b-0">                                
+                        <tbody>
+
+                            <tr data-status="approved">
+                                <td>Voter</td>
+                                <!-- <td>Proposal detail</div></td> -->
+                                <td>Number of votes</td>
+                                <td>Fund amount</td>
+                            </tr>
+                                
+                            {% for i, j in prps.items %}
+
+                            <tr data-status="approved">
+                                <td>{{i}}</td>
+                                <!-- <td>{{j.fund_detail}}</div></td> -->
+                                <td>{{j.votes}}</td>
+                                <td>{{j.fund_amount}}</td>
+                                
+                            </tr>
+                            
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+
+{% endblock %}
+

@@ -1,0 +1,67 @@
+{% extends "main.html" %}
+{% load i18n %}
+
+{% include 'messages.html' %}
+
+{% block content %}
+{% include 'messages.html' %}
+
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2><strong>Create</strong> your Dao</h2>
+            </div>
+            <div class="body">
+                <form method="post">
+                    {%csrf_token%}
+
+                    <label for="password">Dao Name</label>
+                    <div class="form-group">                                
+                        <input type="text" id="password" class="form-control" name="dao_name" placeholder="Enter Dao Name">
+                    </div>
+                    <label for="email_address">Your Pasphrase</label>
+                    <div class="form-group">                                
+                        <input type="password" id="email_address" class="form-control" name="dao_creator" placeholder="Enter your Pasphrase">
+                    </div>
+                   
+                    <button type="submit" class="btn btn-raised btn-primary btn-round waves-effect" name="action" value="Create">Create</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <div class="card">                    
+            
+            <div class="header">
+                <h2><strong>Last DAOs</strong> Created</h2>                        
+            </div>
+            <div class="body">
+                <div class="table-responsive">
+                    <table class="table table-filter table-hover m-b-0">                                
+                        <tbody>
+
+                            <tr data-status="approved">
+                                <td>DAO</td>
+                                <td>description</td>
+                            </tr>
+                            {% for dao in daos %}
+                                <tr>
+                                    <td><a href="/dapp/{{dao.dao_id}}"><input src=""  type="submit" class="btn btn-primary btn-round btn-block waves-effect btn-raised m-b-10" name="Optin" value="{{dao.name}}" id="" style="height: 50px;width: 120px; font-size: 15px ;"></a> </td>
+                                    <td><p>A Dao to show the true potential of Blockchain and evolving web3 community</p></td>
+                                </tr>
+                             
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
