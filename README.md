@@ -14,14 +14,14 @@ In order to get started, following software dependencies are required:
 * virtualenv or (python venv)
 
 
-    $ git clone git@github.com:Socio-Crypto/SocioDAO.git
-    $ virtualenv myenv
-    $ source myenv/bin/activate
-    $ cd SocioDAO
-    $ pip install -r requirements.txt
+$ git clone git@github.com:Socio-Crypto/SocioDAO.git <br />
+$ virtualenv myenv <br />
+$ source myenv/bin/activate <br />
+$ cd SocioDAO <br />
+$ pip install -r requirements.txt <br />
 
-run the development
-    $ python manage.py runserver
+run the development <br />
+$ python manage.py runserver <br />
 
 
 
