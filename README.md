@@ -3,7 +3,8 @@
 ## Introduction
 SocioDAO is a dAPP for creating DAOs, voting, and fundraising.
 
- 
+## Demo
+Link to demo site: https://sociodao.herokuapp.com/
 
 ## Setting up the project and the development environment and Installing dependencies
 
